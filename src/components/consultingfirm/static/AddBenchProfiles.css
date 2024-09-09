@@ -1,0 +1,54 @@
+/* General form container styling */
+.form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Label styling */
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input field styling */
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  /* Form groups for layout alignment */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Error feedback styling */
+  .is-invalid {
+    border-color: #e3342f;
+  }
+  
+  .invalid-feedback {
+    color: #e3342f;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Button styling */
+  .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  
