@@ -6,7 +6,7 @@ function HeaderComponent() {
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-3 custom-nav-item" bg="primary" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#home">Consulting-Firm</Navbar.Brand>
+                <Navbar.Brand href="#home">Consulting Firm</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
