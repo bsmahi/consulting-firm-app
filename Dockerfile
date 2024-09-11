@@ -1,14 +1,18 @@
-FROM node:18-alpine AS development
-ENV NODE_ENV development
-# Add a work directory
-WORKDIR /consulting-firm-app
-# Cache and Install dependencies
-COPY package.json .
-COPY package-lock.json .
+# Step 1: Build the React app
+FROM node:18-alphine as build
+
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-# Copy app files
 COPY . .
-# Expose port
+RUN npm run build
+
+# Step 2: Serve the app with NGINX
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose the port the app runs on
 EXPOSE 3000
-# Start the app
-CMD [ "npm", "start" ]
+
+CMD ["nginx", "-g", "daemon off;"]
+
