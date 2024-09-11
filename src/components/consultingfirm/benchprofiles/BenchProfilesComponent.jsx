@@ -8,7 +8,7 @@ import {
 from "../api/UserDetailsApiService";
 import Table from 'react-bootstrap/Table';
 import Spinner from 'react-bootstrap/Spinner';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Pagination } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function BenchProfilesComponent() {
@@ -18,12 +18,18 @@ function BenchProfilesComponent() {
     const [isEditing, setIsEditing] = useState(false);
     const [editingProfile, setEditingProfile] = useState(null);
 
+    // Pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const [profilesPerPage] = useState(10);
+
     const getBenchProfiles = async () => {
         setIsLoading(true);
         setError(null);
         try {
             const response = await retrieveAllBenchProfilesApi();
-            setBenchProfiles(response.data);
+            // Sort profiles by id
+            const sortedProfiles = response.data.sort((a, b) => a.id - b.id);
+            setBenchProfiles(sortedProfiles);
         } catch (error) {
             setError("Failed to fetch bench profiles");
             console.error("Error fetching bench profiles:", error);
@@ -35,6 +41,14 @@ function BenchProfilesComponent() {
     useEffect(() => {
         getBenchProfiles();
     }, []);
+
+    // Get current profiles
+    const indexOfLastProfile = currentPage * profilesPerPage;
+    const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
+    const currentProfiles = benchProfiles.slice(indexOfFirstProfile, indexOfLastProfile);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const handleEdit = (profile) => {
         setEditingProfile({ ...profile });
@@ -108,11 +122,11 @@ function BenchProfilesComponent() {
                 const updatedProfiles = benchProfiles.map((profile) =>
                     profile.id === editingProfile.id ? { ...profile, ...profileData } : profile
                 );
-                setBenchProfiles(updatedProfiles);
+                setBenchProfiles(updatedProfiles.sort((a, b) => a.id - b.id));
             } else {
                 // Add new profile
                 const response = await createBenchProfilesApi(profileData);
-                setBenchProfiles([...benchProfiles, response.data]);
+                setBenchProfiles([...benchProfiles, response.data].sort((a, b) => a.id - b.id));
             }
         } catch (error) {
             console.error("Error saving profile:", error.response ? error.response.data : error.message);
@@ -177,7 +191,7 @@ function BenchProfilesComponent() {
                     </tr>
                 </thead>
                 <tbody>
-                    {benchProfiles.map((benchprofile) => (
+                    {currentProfiles.map((benchprofile) => (
                         <tr key={benchprofile.id}>
                             <td>{benchprofile.id}</td>
                             <td>{benchprofile.recruiterName}</td>
@@ -220,6 +234,17 @@ function BenchProfilesComponent() {
                     ))}
                 </tbody>
             </Table>
+            <Pagination className="justify-content-center" size="sm">
+                {[...Array(Math.ceil(benchProfiles.length / profilesPerPage))].map((_, index) => (
+                    <Pagination.Item
+                        key={index + 1}
+                        active={index + 1 === currentPage}
+                        onClick={() => paginate(index + 1)}
+                    >
+                        {index + 1}
+                    </Pagination.Item>
+                ))}
+            </Pagination>
 
             {isEditing && (
                 <Modal show={isEditing} onHide={() => setIsEditing(false)}>
