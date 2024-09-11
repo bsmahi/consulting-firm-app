@@ -56,7 +56,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/consulting-firm-app-ga:${{ github.sha }} -f consulting-firm-app/Dockerfile . 
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/consulting-firm-app-ga:${{ github.sha }} -f /consulting-firm-app/Dockerfile . 
 
     - name: Push Docker image to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/consulting-firm-app-ga:${{ github.sha }}
