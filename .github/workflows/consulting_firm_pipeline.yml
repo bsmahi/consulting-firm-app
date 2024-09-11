@@ -42,7 +42,10 @@ jobs:
         # only if the app build and test successfully
     needs: [build]
     steps:
-          
+    # Add an ls command to check the directory structure
+    - name: Check files in root directory
+      run: ls -al
+      
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
 
