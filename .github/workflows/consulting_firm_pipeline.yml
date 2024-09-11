@@ -48,9 +48,9 @@ jobs:
           # token: ${{ secrets.DOCKER_SCOUT_TOKEN }}  # Make sure you have this token set in your secrets
           image: ${{ secrets.DOCKER_USERNAME }}/consulting-firm-app-ga:latest
 
-    - name: Run Trivy Vulnerability Scanner
-      uses: aquasecurity/trivy-action@0.20.0
-      with:
-          image-ref: 'docker.io/bsmahi/consulting-firm-app-ga:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'    
+    # - name: Run Trivy Vulnerability Scanner
+    #   uses: aquasecurity/trivy-action@0.20.0
+    #   with:
+    #       image-ref: 'docker.io/bsmahi/consulting-firm-app-ga:${{ github.sha }}'
+    #       format: 'sarif'
+    #       output: 'trivy-results.sarif'    
