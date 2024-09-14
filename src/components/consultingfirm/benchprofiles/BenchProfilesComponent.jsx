@@ -5,8 +5,8 @@ import {
     updateBenchProfileApi,
     deleteBenchProfileApi
 }
-from "../api/UserDetailsApiService";
-import Table from 'react-bootstrap/Table';
+    from "../api/UserDetailsApiService";
+import { Table, Form } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Modal, Button, Pagination } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -17,10 +17,18 @@ function BenchProfilesComponent() {
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editingProfile, setEditingProfile] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // Pagination states
     const [currentPage, setCurrentPage] = useState(1);
     const [profilesPerPage] = useState(10);
+
+    // Convert all values of the profile object to a string for filtering
+    const matchesSearchTerm = (profile) => {
+        return Object.values(profile).some((value) =>
+            String(value).toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    };
 
     const getBenchProfiles = async () => {
         setIsLoading(true);
@@ -46,6 +54,9 @@ function BenchProfilesComponent() {
     const indexOfLastProfile = currentPage * profilesPerPage;
     const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
     const currentProfiles = benchProfiles.slice(indexOfFirstProfile, indexOfLastProfile);
+
+    // Filter profiles based on the search term across all fields
+    const filteredProfiles = currentProfiles.filter((profile) => matchesSearchTerm(profile));
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -155,9 +166,28 @@ function BenchProfilesComponent() {
             <h1 className="benchprofilesh1">Bench Profiles Details</h1>
 
             {/* Button to Open the Modal */}
-            <Button variant="primary" onClick={handleAddNew} className="mb-3">
+            <Button variant="dark" onClick={handleAddNew} className="mb-3">
                 Add New Profile
             </Button>
+
+            <Form.Group className="mb-3" style={{ textAlign: 'right' }}>
+                <Form.Control
+                    type="text"
+                    placeholder="Search Profiles"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="mr-sm-2"
+                    style={{
+                        width: '250px',
+                        display: 'inline-block',
+                        border: '2px solid black',
+                        borderRadius: '8px',
+                        fontWeight: 'bold',
+                        marginRight: '8px',
+                    }}
+                />
+            </Form.Group>
+
 
             <Table striped bordered responsive="sm" size="sm">
                 <thead>
@@ -191,7 +221,7 @@ function BenchProfilesComponent() {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentProfiles.map((benchprofile) => (
+                    {filteredProfiles.map((benchprofile) => (
                         <tr key={benchprofile.id}>
                             <td>{benchprofile.id}</td>
                             <td>{benchprofile.recruiterName}</td>
