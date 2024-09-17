@@ -13,3 +13,45 @@ sequenceDiagram
     T->>G: Pass transformed AST
     G->>JS: Generate JavaScript code
     JS->>Dev: Return transpiled JS
+
+
+AST  Diagram
+<div className="primary">Learn React JS</div>
+graph TD
+    A[Program] --> B[ExpressionStatement]
+    B --> C[JSXElement]
+    C --> D[JSXOpeningElement]
+    C --> E[JSXClosingElement]
+    C --> F[JSXText]
+    D --> G[JSXIdentifier: div]
+    D --> H[JSXAttribute]
+    H --> I[JSXIdentifier: className]
+    H --> J[StringLiteral: 'primary']
+    E --> K[JSXIdentifier: div]
+    F --> L[Text: 'Learn React JS']
+
+The root node is a Program node, which represents the entire program.
+Under the Program node, we have an ExpressionStatement node. In JSX, the entire JSX structure is treated as an expression.
+The JSXElement node represents the entire JSX element.
+The JSXElement has three child nodes:
+
+JSXOpeningElement: Represents the opening tag <div className="greeting">
+JSXClosingElement: Represents the closing tag </div>
+JSXText: Represents the text content "Hello, world!"
+
+The JSXOpeningElement has two child nodes:
+
+JSXIdentifier: Represents the tag name "div"
+JSXAttribute: Represents the attribute className="primary"
+
+The JSXAttribute node has two child nodes:
+
+JSXIdentifier: Represents the attribute name "className"
+StringLiteral: Represents the attribute value "primary"
+
+The JSXClosingElement has a JSXIdentifier child node representing the closing tag name "div".
+The JSXText node contains the actual text content "Learn React JS".
+
+This structure allows the compiler to understand and process the JSX code effectively.
+Each node in the AST contains additional metadata such as its type, location in the source code, and any relevant values.
+When transforming JSX to JavaScript, the compiler traverses this AST, converts JSX-specific nodes (like JSXElement, JSXAttribute, etc.) into their JavaScript equivalents (typically function calls to React.createElement()), and then generates the final JavaScript code.
