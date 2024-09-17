@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant Dev as Developer
+    participant BC as Babel Compiler
+    participant AST as Abstract Syntax Tree
+    participant T as Transformer
+    participant G as Code Generator
+    participant JS as JavaScript Output
+
+    Dev->>BC: Write JSX code
+    BC->>AST: Parse JSX
+    AST->>T: Generate AST
+    T->>T: Transform JSX nodes to JS
+    T->>G: Pass transformed AST
+    G->>JS: Generate JavaScript code
+    JS->>Dev: Return transpiled JS
