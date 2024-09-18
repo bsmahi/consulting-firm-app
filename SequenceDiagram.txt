@@ -57,3 +57,64 @@ The JSXText node contains the actual text content "Learn React JS".
 This structure allows the compiler to understand and process the JSX code effectively.
 Each node in the AST contains additional metadata such as its type, location in the source code, and any relevant values.
 When transforming JSX to JavaScript, the compiler traverses this AST, converts JSX-specific nodes (like JSXElement, JSXAttribute, etc.) into their JavaScript equivalents (typically function calls to React.createElement()), and then generates the final JavaScript code.
+
+
+sequenceDiagram
+    participant User
+    participant npm
+    participant package.json
+    participant npmRegistry
+    participant node_modules
+    participant package.json
+
+    User->>npm: npm install
+    npm->>package.json: Read dependencies
+    npm->>package.json: Check for existing lock file
+    alt Lock file exists
+        npm->>package.json: Use locked versions
+    else No lock file
+        npm->>npmRegistry: Resolve latest compatible versions
+    end
+    loop For each package
+        npm->>npmRegistry: Download package
+        npm->>node_modules: Install package
+    end
+    npm->>package.json: Update/Create lock file
+    npm->>node_modules: Run post-install scripts
+    npm->>node_modules: Create symlinks for binaries
+    npm->>User: Display installation summary
+
+
+Angular Js flow
+
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Angular
+    participant Controller
+    participant Service
+    participant Server
+
+    User->>Browser: Enter URL
+    Browser->>Angular: Load Angular.js app
+    Angular->>Browser: Bootstrap application
+    Browser->>Angular: Route to initial view
+    Angular->>Controller: Instantiate controller
+    Controller->>Service: Request data
+    Service->>Server: HTTP request
+    Server-->>Service: HTTP response
+    Service-->>Controller: Return data
+    Controller->>Angular: Update $scope
+    Angular->>Browser: Update view
+    Browser-->>User: Display updated view
+
+    User->>Browser: Interact with view
+    Browser->>Angular: Trigger event
+    Angular->>Controller: Call event handler
+    Controller->>Service: Update data
+    Service->>Server: Send update (if needed)
+    Server-->>Service: Confirm update
+    Service-->>Controller: Return result
+    Controller->>Angular: Update $scope
+    Angular->>Browser: Update view
+    Browser-->>User: Display updated view
