@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HeaderComponent from './common/HeaderComponent';
 import WelcomeComponent from './common/WelcomeComponent';
+import FooterComponent from './common/FooterComponent';
 import BenchProfilesComponent from './benchprofiles/BenchProfilesComponent';
 import DailySubmissionsComponent from './dailysubmissions/DailySubmissionsComponent';
 import InterviewsComponent from './interviews/InterviewsComponent';

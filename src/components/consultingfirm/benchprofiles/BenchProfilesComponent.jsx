@@ -8,7 +8,8 @@ import {
     from "../api/UserDetailsApiService";
 import { Table, Form } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
-import { Modal, Button, Pagination } from 'react-bootstrap';
+import { Modal, Button, Pagination, InputGroup } from 'react-bootstrap';
+import { BsSearch } from 'react-icons/bs';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function BenchProfilesComponent() {
@@ -165,29 +166,47 @@ function BenchProfilesComponent() {
         <div>
             <h1 className="benchprofilesh1">Bench Profiles Details</h1>
 
-            {/* Button to Open the Modal */}
-            <Button variant="dark" onClick={handleAddNew} className="mb-3">
-                Add New Profile
-            </Button>
-
             <Form.Group className="mb-3" style={{ textAlign: 'right' }}>
-                <Form.Control
-                    type="text"
-                    placeholder="Search Profiles"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="mr-sm-2"
-                    style={{
-                        width: '250px',
-                        display: 'inline-block',
-                        border: '2px solid black',
-                        borderRadius: '8px',
-                        fontWeight: 'bold',
-                        marginRight: '8px',
-                    }}
-                />
+                <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    <Button
+                        variant="primary"
+                        onClick={handleAddNew}
+                        className="mb-3"
+                        style={{
+                            height: '38px',
+                            lineHeight: '1.5',
+                            marginTop: '22px',
+                        }}
+                    >
+                        Add New Profile
+                    </Button>
+                    <InputGroup style={{ width: '300px' }}>
+                        <InputGroup.Text
+                            style={{
+                                backgroundColor: '#fff',
+                                border: '1px solid black',
+                                borderRadius: '8px 0 0 8px',
+                                padding: '6px 10px',
+                                marginLeft: '10px'
+                            }}
+                        >
+                            <BsSearch />
+                        </InputGroup.Text>
+                        <Form.Control
+                            type="text"
+                            placeholder="Search Profiles"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            style={{
+                                border: '1px solid black',
+                                borderRadius: '0 8px 8px 0',
+                                fontWeight: 'bold',
+                                height: '38px',
+                            }}
+                        />
+                    </InputGroup>
+                </div>
             </Form.Group>
-
 
             <Table striped bordered responsive="sm" size="sm">
                 <thead>
