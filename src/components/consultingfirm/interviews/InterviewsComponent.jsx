@@ -154,7 +154,7 @@ function InterviewsComponent() {
 
   return (
     <div>
-      <h1 className="benchprofilesh1">Interviews Details</h1>
+      <h1 className="interviewsh1">Interviews Details</h1>
 
       <Form.Group className="mb-3" style={{ textAlign: "right" }}>
         <div style={{ display: "inline-flex", alignItems: "center" }}>
