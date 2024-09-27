@@ -40,10 +40,11 @@ input, button {
     font-size: 1.5em;
 }
 
-.benchprofilesh1 {
+.benchprofilesh1,.placementsh1 {
     text-align: center;
 }
-  
+
+
 
 form {
     display: flex;

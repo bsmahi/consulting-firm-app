@@ -4,6 +4,7 @@ function WelcomeComponent() {
     return (
         <div className="Welcome">
             Manage Bench Profiles - <Link to="/benchprofiles">Go here</Link>
+
         </div>
     )
 }

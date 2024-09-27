@@ -14,6 +14,8 @@ function HeaderComponent() {
                         <Nav.Link href="/benchprofiles">BenchProfiles</Nav.Link>
                         <Nav.Link href="/dailysubmissions">Daily Submissions</Nav.Link>
                         <Nav.Link href="/interviews">Interviews</Nav.Link>
+                        <Nav.Link href="/placements">Placements</Nav.Link>
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
