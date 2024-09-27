@@ -143,7 +143,7 @@ function PlacementsComponent() {
                             marginTop: '22px',
                         }}
                     >
-                        Add New Profile
+                        Add New Placement
                     </Button>
                     <InputGroup style={{ width: '300px' }}>
                         <InputGroup.Text
@@ -159,7 +159,7 @@ function PlacementsComponent() {
                         </InputGroup.Text>
                         <Form.Control
                             type="text"
-                            placeholder="Search Placementss"
+                            placeholder="Search Placements"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             style={{
