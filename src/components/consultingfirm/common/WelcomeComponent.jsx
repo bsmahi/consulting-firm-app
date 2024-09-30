@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function WelcomeComponent() {
-    return (
-        <div className="Welcome">
-            Manage Bench Profiles - <Link to="/benchprofiles">Go here</Link>
 
-        </div>
-    )
+  return (
+    <div className="Welcome">
+      <div>
+        Manage Bench Profiles - <Link to="/benchprofiles">Go here</Link>
+      </div>
+      <div>
+        Manage Interviews - <Link to="/interviews">Go here</Link>
+      </div>
+    </div>
+  );
 }
 
-export default WelcomeComponent
+export default WelcomeComponent;
