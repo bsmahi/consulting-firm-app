@@ -17,3 +17,7 @@ export const deleteInterviewsApi = (id) => apiClient.delete(`/api/non-secure/int
 
 
 /* Placements */
+export const retrieveAllPlacementsApi = () => apiClient.get(`/api/non-secure/placements/fetch-Placements`);
+export const createPlacementsApi = (placements) => apiClient.post(`/api/non-secure/placements/create-placement`, placements);
+export const updatePlacementsApi = (id, placements) => apiClient.put(`/api/non-secure/placements/${id}`, placements);
+export const deletePlacementsApi = (id) => apiClient.delete(`/api/non-secure/placements/delete-placement/${id}`);

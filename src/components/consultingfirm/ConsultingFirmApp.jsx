@@ -5,6 +5,8 @@ import FooterComponent from './common/FooterComponent';
 import BenchProfilesComponent from './benchprofiles/BenchProfilesComponent';
 import DailySubmissionsComponent from './dailysubmissions/DailySubmissionsComponent';
 import InterviewsComponent from './interviews/InterviewsComponent';
+import PlacementsComponent from './placements/PlacementsComponent';
+
 
 import './static/ConsultingFirmApp.css';
 
@@ -25,8 +27,11 @@ export default function ConsultingFirmApp() {
                     <Route path='/interviews' element={
                         <InterviewsComponent />
                     } />
+                    <Route path='/placements' element={
+                        <PlacementsComponent />
+                    } />
                 </Routes>
-                {/* <FooterComponent /> */}
+                { <FooterComponent /> }
             </BrowserRouter>
           
         </div>
