@@ -7,6 +7,10 @@ export const updateBenchProfileApi = (id, benchprofiles) => apiClient.put(`/api/
 export const deleteBenchProfileApi = (id) => apiClient.delete(`/api/non-secure/benchprofiles/delete-users/${id}`);
 
 /* DailySubmissions */
+export const retrieveAllDailySubmissionsApi = () => apiClient.get(`/api/non-secure/dailysubmissions/fetch-daily-submissions`);
+export const createDailySubmissionsApi = (dailysubmissions) => apiClient.post(`/api/non-secure/dailysubmissions/create-daily-submissions`, dailysubmissions);
+export const updateDailySubmissionsApi = (id, dailysubmissions) => apiClient.put(`/api/non-secure/dailysubmissions/daily-submissions/${id}`, dailysubmissions);
+export const deleteDailySubmissionsApi = (id) => apiClient.delete(`/api/non-secure/dailysubmissions/delete-submission/${id}`);
 
 /* Interviews */
 export const retrieveAllInterviewsApi = () => apiClient.get(`/api/non-secure/interviews/fetch-interviews`);
