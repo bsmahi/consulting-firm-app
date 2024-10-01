@@ -40,7 +40,7 @@ function DailySubmissionsComponent() {
             const sortedSubmissions = response.data.sort((a, b) => a.id - b.id);
             setDailySubmissions(sortedSubmissions);
         } catch (error) {
-            setError("Failed to fetch bench submissions");
+            setError("Failed to fetch daily submissions");
             console.error("Error fetching daily submissions:", error);
         } finally {
             setIsLoading(false);
@@ -57,7 +57,7 @@ function DailySubmissionsComponent() {
     const currentSubmissions = dailySubmissions.slice(indexOfFirstSubmission, indexOfLastSubmission);
 
     // Filter submissions based on the search term across all fields
-    const filteredSubmissions = currentSubmissions.filter((profile) => matchesSearchTerm(profile));
+    const filteredSubmissions = currentSubmissions.filter((submission) => matchesSearchTerm(submission));
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
