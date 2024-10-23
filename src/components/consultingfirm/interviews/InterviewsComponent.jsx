@@ -4,7 +4,6 @@ import {
   retrieveAllInterviewsApi,
   updateInterviewApi,
   deleteInterviewsApi,
-  retrieveInterviewApi,
 } from "../api/UserDetailsApiService";
 import { Table, Form } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
