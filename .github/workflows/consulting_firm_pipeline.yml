@@ -55,10 +55,13 @@ jobs:
       env:
         ECR_REGISTRY: 818140567777.dkr.ecr.us-west-1.amazonaws.com
         ECR_REPOSITORY: consultancyfirm/unsecure
-        IMAGE_TAG: ${{ secrets.DOCKER_USERNAME }}/consulting-firm-app-ga:latest
+        IMAGE_TAG: ${{ github.sha }}
+        
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest   
    
     - name: Run Docker Scout Action
       uses: docker/scout-action@v1
